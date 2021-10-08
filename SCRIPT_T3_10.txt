@@ -1,0 +1,69 @@
+####################
+#                  #
+# Copiar todo esto #
+#                  #
+####################
+# Hecho con gusto por ____________ (UAEH)
+# LABORATORIO - Graficas animadas con ggplot2
+
+
+#################################################
+# Objetivo: hacer graficas animadas con ggplot2
+# ------------------------------------------------
+
+# En este ejercicio vamos a:
+# 1. grafica basica
+# 2. animando grafica
+# 3. mejorando animacion
+
+# cargando libreria tidyverse
+library(tidyverse)
+
+# instalando paquete para animar
+install.packages('gganimate')
+library(gganimate)
+
+install.packages('gifski')
+library(gifski)
+
+# instalando paquete con los datos
+# install.packages("gapminder")
+
+# cargando paquete con los datos
+library(gapminder)
+
+# cargando datos a entorno
+data("gapminder")
+
+# cargando datos a entorno
+head(gapminder)
+
+################################
+# 1. grafica basica
+################################
+
+
+
+################################
+# 2. animando grafica
+################################
+
+
+
+################################
+# 3. mejorando animacion
+################################
+gapminder %>% 
+  group_by(year, continent) %>% 
+  summarize (mean_life = mean(lifeExp)) %>% 
+  ggplot(aes (x = year,
+              y = mean_life,
+              color = continent)) +
+  geom_line(size = 2) +
+  geom_point(size = 4) +
+labs (tittle = "Esperanza de Vida en {frame_along}" ,
+      x = "Fecha" ,
+      y = "Años de vida") +
+  theme_minimal () +
+  transition_reveal(year)
+      
